@@ -1,6 +1,6 @@
-Here's a sample `README.md` file for your backend application:
 
-```markdown
+
+
 # FashionStore Backend
 
 This is the backend for the FashionStore application, built with Node.js, Express, and MongoDB. This backend provides RESTful APIs for handling user authentication, product management, order processing, and payment integration using Stripe.
@@ -76,4 +76,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [Stripe](https://stripe.com/)
 ```
 
-Copy and paste this text into your `README.md` file. It includes setup instructions, mentions the necessary environment variables, and provides a brief overview of your backend application.
+
