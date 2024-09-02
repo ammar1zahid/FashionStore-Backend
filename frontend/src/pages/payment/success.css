@@ -1,0 +1,28 @@
+/* SuccessPage.css */
+.success-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+  }
+  
+  .success-message {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    background-color: #d4edda;
+  }
+  
+  .success-message h1 {
+    font-size: 36px;
+    color: #28a745;
+    margin-bottom: 10px;
+  }
+  
+  .success-message p {
+    font-size: 18px;
+    color: #155724;
+  }
+  
