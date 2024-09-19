@@ -55,8 +55,11 @@ class UserController {
     }
 
     public static async getAllUsers(req: Request, res: Response, next: NextFunction): Promise<void> {
+        const query = req.query.new;
+    
         try {
-            const allUsers = await UserService.getAllUsers();
+            // Pass the `new` query to the service to handle the logic
+            const allUsers = await UserService.getAllUsers(query as string | undefined);
             res.status(200).json(allUsers);
         } catch (err: unknown) {
             if (err instanceof Error) {
@@ -66,6 +69,7 @@ class UserController {
             }
         }
     }
+    
 
     public static async getUserStats(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {

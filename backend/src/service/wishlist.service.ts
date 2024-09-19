@@ -28,18 +28,23 @@ class WishlistService {
     }
 
     // Delete Wishlist Entry
-    public static async deleteWishlistEntry(userId: string, wishlistId: string): Promise<void> {
-        const wishlistEntry = await WishlistModel.findById(wishlistId);
+    public static async deleteWishlistEntry(userId: string, productId: string): Promise<void> {
+        // Find the wishlist entry by userId and productId
+        const wishlistEntry = await WishlistModel.findOne({ userId, productId });
+        
         if (!wishlistEntry) {
             throw new Error('Wishlist entry not found');
         }
-
+    
+        // Check if the user is authorized to delete this entry
         if (wishlistEntry.userId.toString() !== userId) {
             throw new Error('Unauthorized to delete this entry');
         }
-
-        await WishlistModel.findByIdAndDelete(wishlistId);
+    
+        // Delete the wishlist entry by its ID
+        await WishlistModel.findByIdAndDelete(wishlistEntry._id);
     }
+    
 
     // Get Wishlist for a User
     public static async getUserWishlist(userId: string): Promise<IWishlist[]> {

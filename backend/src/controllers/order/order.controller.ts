@@ -82,7 +82,10 @@ class OrderController {
 
     public static async getMonthlyIncome(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const result = await OrderService.getMonthlyIncome();
+            const productId = req.query.pid as string | undefined;
+          
+            const result = await OrderService.getMonthlyIncome(productId);
+           
             res.status(200).json(result);
         } catch (err: unknown) {
             if (err instanceof Error) {
@@ -92,6 +95,9 @@ class OrderController {
             }
         }
     }
+    
+    
+    
 }
 
 export default OrderController;

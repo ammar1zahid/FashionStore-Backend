@@ -41,7 +41,7 @@ router.get("/:id", verifyUser,UserController.getUser);
 router.get("/", verifyAdmin, UserController.getAllUsers);
 
 router.get(
-  "/stats",
+  "/stats/allUsers",
   verifyAdmin,
   UserController.getUserStats
 );

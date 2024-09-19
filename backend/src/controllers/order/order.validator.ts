@@ -15,6 +15,10 @@ export const createOrderValidator = Joi.object({
             quantity: Joi.number().min(1).default(1).messages({
                 'number.base': 'Quantity should be a type of number',
                 'number.min': 'Quantity cannot be less than 1'
+            }),
+            price: Joi.number().min(1).default(1).messages({
+                'number.base': 'price should be a type of number',
+                'number.min': 'price cannot be less than 1'
             })
         })
     ).required().messages({

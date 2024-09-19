@@ -21,9 +21,16 @@ class UserService {
         return UserModel.findById(id).exec();
     }
 
-    public static async getAllUsers(): Promise<IUser[]> {
-        return UserModel.find().exec();
+    public static async getAllUsers(query?: string): Promise<IUser[]> {
+        if (query === 'true') {
+            // If query is 'true', return the latest 5 users sorted by _id in descending order
+            return UserModel.find().sort({ _id: -1 }).limit(5).exec();
+        } else {
+            
+            return UserModel.find().exec();
+        }
     }
+    
 
     public static async getUserStats(): Promise<unknown[]> {
         const date = new Date();

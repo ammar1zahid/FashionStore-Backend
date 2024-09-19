@@ -5,6 +5,7 @@ import createError from '../../middlewares/error';
 class ProductController {
     public static async createProduct(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
+            console.log('Incoming Product Data:', req.body);
             const result = await ProductService.createProduct(req.body);
             res.status(200).json(result);
         } catch (err: unknown) {

@@ -2,6 +2,7 @@ import express from 'express';
 import OrderController from './order.controller';
 import { validate } from '../../middlewares/validation'; 
 import { createOrderValidator, updateOrderValidator } from './order.validator'; 
+import {  verifyAdmin } from '../../middlewares/verifyToken';
 
 const router = express.Router();
 
@@ -20,13 +21,13 @@ router.put('/:id',
 // Delete Order route
 router.delete('/:id', OrderController.deleteOrder);
 
-// Get User Orders route
+// Get User Orders 
 router.get('/:id', OrderController.getUserOrders);
 
-// Get All Orders route
-router.get('/all', OrderController.getAllOrders);
+// Get All Orders 
+router.get('/all/users',verifyAdmin, OrderController.getAllOrders);
 
 // Get Monthly Income route
-router.get('/income', OrderController.getMonthlyIncome);
+router.get('/all/income', OrderController.getMonthlyIncome);
 
 export default router;

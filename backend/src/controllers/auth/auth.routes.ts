@@ -3,6 +3,7 @@ import AuthController from './auth.controller';
 import { validate } from '../../middlewares/validation'; 
 import { registerUserValidator, loginUserValidator } from './auth.validator'; 
 
+
 const router = Router();
 
 // Register route with validation
@@ -16,5 +17,7 @@ router.post('/login',
     validate(loginUserValidator, 'body'), 
     AuthController.loginUser
 );
+
+
 
 export default router;

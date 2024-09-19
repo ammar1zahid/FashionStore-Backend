@@ -24,7 +24,7 @@ router.delete('/:id', ProductController.deleteProduct);
 router.get('/:id', ProductController.getProduct);
 
 // Get All Products route
-router.get('/all', ProductController.getAllProducts);
+router.get('/', ProductController.getAllProducts);
 
 // Get Recommended Products route
 router.get('/recommended/:id', ProductController.getRecommendedProducts);

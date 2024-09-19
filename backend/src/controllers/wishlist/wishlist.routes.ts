@@ -21,7 +21,7 @@ wishlistRouter.put("/:id/:entryId",
 );
 
 // Delete Wishlist Entry route with validation
-wishlistRouter.delete("/:id/:entryId", 
+wishlistRouter.delete("/:id/:productId", 
     verifyUser,
     validate(deleteWishlistValidator, 'params'), 
     WishlistController.deleteWishlistEntry

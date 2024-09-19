@@ -1,10 +1,20 @@
+import mongoose from 'mongoose';
 import ProductModel, { IProduct } from '../models/product.model';
 
 class ProductService {
     public static async createProduct(productData: IProduct): Promise<IProduct> {
-        const newProduct = new ProductModel(productData);
-        return newProduct.save();
+        try {
+            const newProduct = new ProductModel(productData);
+            return await newProduct.save();
+        } catch (error) {
+            if (error instanceof mongoose.Error.ValidationError) {
+                console.error('Validation Error:', error);
+                throw new Error('Validation failed for product creation');
+            }
+            throw error;
+        }
     }
+    
 
     public static async updateProduct(productId: string, productData: Partial<IProduct>): Promise<IProduct | null> {
         return ProductModel.findByIdAndUpdate(

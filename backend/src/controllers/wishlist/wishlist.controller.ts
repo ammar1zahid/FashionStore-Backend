@@ -46,9 +46,10 @@ class WishlistController {
     public static async deleteWishlistEntry(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const userId = req.params.id;
-            const wishlistId = req.params.entryId;
-
-            await WishlistService.deleteWishlistEntry(userId, wishlistId);
+            const productId = req.params.productId;
+    
+            // Call the service to delete by userId and productId
+            await WishlistService.deleteWishlistEntry(userId, productId);
             res.status(200).json({ message: 'Wishlist entry has been deleted' });
         } catch (err: unknown) {
             if (err instanceof Error && err.message === 'Unauthorized to delete this entry') {
@@ -60,6 +61,7 @@ class WishlistController {
             }
         }
     }
+    
 
     // Get Wishlist for a User
     public static async getUserWishlist(req: Request, res: Response, next: NextFunction): Promise<void> {

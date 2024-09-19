@@ -15,8 +15,8 @@ export const createProductValidator = Joi.object({
         'any.required': 'Image URL is a required field'
     }),
     categories: Joi.array().items(Joi.string()).optional(),
-    size: Joi.string().optional(),
-    color: Joi.string().optional(),
+    size: Joi.array().items(Joi.string()).optional(),
+    color: Joi.array().items(Joi.string()).optional(),
     price: Joi.number().required().messages({
         'number.base': 'Price should be a type of number',
         'any.required': 'Price is a required field'
@@ -25,6 +25,9 @@ export const createProductValidator = Joi.object({
         'number.base': 'Inventory should be a type of number',
         'number.min': 'Inventory cannot be less than 1',
         'any.required': 'Inventory is a required field'
+    }),
+    inStock: Joi.boolean().optional().messages({
+        'boolean.base': 'InStock should be a type of boolean'
     })
 });
 
@@ -34,8 +37,9 @@ export const updateProductValidator = Joi.object({
     desc: Joi.string().optional(),
     img: Joi.string().optional(),
     categories: Joi.array().items(Joi.string()).optional(),
-    size: Joi.string().optional(),
-    color: Joi.string().optional(),
+    size: Joi.array().items(Joi.string()).optional(),
+    color: Joi.array().items(Joi.string()).optional(),
     price: Joi.number().optional(),
-    inventory: Joi.number().min(1).optional()
+    inventory: Joi.number().min(1).optional(),
+    inStock: Joi.boolean().optional()
 });
