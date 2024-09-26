@@ -26,6 +26,9 @@ router.get('/:id', ProductController.getProduct);
 // Get All Products route
 router.get('/', ProductController.getAllProducts);
 
+// Get All Products admin route
+router.get('/admin/get', ProductController.getAllProductsAdmin);
+
 // Get Recommended Products route
 router.get('/recommended/:id', ProductController.getRecommendedProducts);
 

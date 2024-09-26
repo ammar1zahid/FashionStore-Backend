@@ -4,8 +4,6 @@ import AddressModel from '../models/address.model';
 import Cart from '../models/cart.model';
 
 // Define the TypeScript interfaces
-
-
 export interface IPaymentMethod {
     _id?: mongoose.Types.ObjectId;
     cardNumber: string;
@@ -23,8 +21,8 @@ export interface IUser extends Document {
     phone?: string;
     isAdmin: boolean;
     paymentMethods: IPaymentMethod[];
+    img?: string; // Optional img field
 }
-
 
 // Define the PaymentMethod Schema
 const PaymentMethodSchema: Schema<IPaymentMethod> = new Schema({
@@ -37,10 +35,9 @@ const PaymentMethodSchema: Schema<IPaymentMethod> = new Schema({
 // Create the User Schema
 const UserSchema: Schema<IUser> = new Schema({
     username: {
-        //index: { unique: true },
         type: String,
         required: true,
-        unique:true
+        unique: true
     },
     firstName: {
         type: String,
@@ -69,6 +66,10 @@ const UserSchema: Schema<IUser> = new Schema({
     paymentMethods: {
         type: [PaymentMethodSchema],
         required: true,
+    },
+    img: {
+        type: String,
+        default: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-8e38e.appspot.com/o/1727086849041Media%20(1).jpg?alt=media&token=dfbce165-0319-4321-9f66-f839bfd9bd95', // Default No Avatar image URL
     },
 }, { timestamps: true });
 

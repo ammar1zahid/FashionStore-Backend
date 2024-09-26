@@ -9,7 +9,8 @@ export const updateUserValidator = Joi.object({
     email: Joi.string().email().optional(),
     password: Joi.string().optional(),
     phone: Joi.string().optional(),
-    isAdmin: Joi.boolean().optional()
+    isAdmin: Joi.boolean().optional(),
+    img: Joi.string().optional(),
 });
 
 // Validator for password reset

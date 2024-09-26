@@ -66,7 +66,7 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Add New</h3>
           <ul className="sidebarList">
-            <Link to="/users" className="link">
+            <Link to="/newUser" className="link">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Users

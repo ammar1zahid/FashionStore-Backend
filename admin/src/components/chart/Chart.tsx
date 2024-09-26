@@ -8,21 +8,20 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-
 interface DataPoint {
   name: string;
-  [key: string]: number | string; 
+  [key: string]: number | string;
 }
 
-//  props type for the Chart component
+// Props type for the Chart component
 interface ChartProps {
   title: string;
-  data: DataPoint[]; 
+  data: DataPoint[];
   dataKey: string;
   grid?: boolean; 
 }
 
-export default function Chart({ title, data, dataKey, grid }: ChartProps) {
+export default function Chart({ title, data, dataKey, grid = false }: ChartProps) {
   return (
     <div className="chart">
       <h3 className="chartTitle">{title}</h3>

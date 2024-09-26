@@ -1,32 +1,28 @@
 import "./userList.css";
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { DeleteOutline } from "@mui/icons-material";
-import { userRows } from "../../dumyData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUsers, deleteUser } from "../../redux/apiCalls"; // Adjust the path as necessary
+import { RootState } from "../../redux/store";
 
-
-interface UserRow {
-  id: number;
-  avatar: string;
-  username: string;
-  email: string;
-  status: string;
-  transaction: string;
-}
 
 export default function UserList() {
+  const dispatch = useDispatch();
+  const { users, isFetching, error } = useSelector((state: RootState) => state.user); // Adjust the type as necessary
 
-  const [data, setData] = useState<UserRow[]>(userRows);
+  // Fetch users when the component mounts
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
 
-
-  const handleDelete = (id: number) => {
-    setData(data.filter((item) => item.id !== id));
+  const handleDelete = (id: string) => {
+    deleteUser(id, dispatch);
   };
 
- 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 90 },
     {
       field: "user",
       headerName: "User",
@@ -58,12 +54,12 @@ export default function UserList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/user/" + params.row.id}>
+            <Link to={"/user/" + params.row._id}>
               <button className="userListEdit">Edit</button>
             </Link>
             <DeleteOutline
               className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             />
           </>
         );
@@ -73,20 +69,29 @@ export default function UserList() {
 
   return (
     <div className="userList">
-      <DataGrid
-        rows={data}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 8,
+      {isFetching ? (
+        <p>Loading...</p> // Display loading indicator
+      ) : error ? (
+        <p>Error fetching users.</p> // Display error message if there was an issue fetching users
+      ) : users.length === 0 ? (
+        <p>No users available.</p> // Display message if there are no users
+      ) : (
+        <DataGrid
+          rows={users}
+          columns={columns}
+          getRowId={(row) => row._id}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 8,
+              },
             },
-          },
-        }}
-        pageSizeOptions={[8]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
+          }}
+          pageSizeOptions={[8]}
+          checkboxSelection
+          disableRowSelectionOnClick
+        />
+      )}
     </div>
   );
 }

@@ -8,6 +8,7 @@ import wishlistRouter from './controllers/wishlist/wishlist.routes';
 import addressRouter from './controllers/address/address.routes'; 
 import stripeRouter from './controllers/stripe/stripe.routes'; 
 import ratingRouter from "./controllers/rating/rating.routes"
+import commentsRouter from "./controllers/comments/comments.routes"
 
 const Routers = express.Router();
 
@@ -37,5 +38,8 @@ Routers.use('/checkout', stripeRouter);
 
 // Routes to  rating
 Routers.use('/rating', ratingRouter);
+
+// Routes to  rating
+Routers.use('/comments', commentsRouter);
 
 export default Routers;

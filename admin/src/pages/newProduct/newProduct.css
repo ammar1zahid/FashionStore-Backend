@@ -1,40 +1,89 @@
 .newProduct {
-    flex: 4;
-  }
-  
-  .addProductForm {
-    margin-top: 10px;
-  }
-  
-  .addProductItem {
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
-  
-  .addProductItem > label {
-    color: gray;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  .addProductItem > input {
-    padding: 10px;
-  }
-  
-  .addProductItem > select {
-    padding: 10px;
-  }
-  
-  .addProductButton {
-    margin-top: 10px;
-    padding: 7px 10px;
-    border: none;
-    border-radius: 10px;
-    background-color: darkblue;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  
+  flex: 4;
+  padding: 20px;
+  background-color: #f7f9fc;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.addProductTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.addProductForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.addProductItem {
+  flex: 1 1 calc(50% - 20px);
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.addProductItem > label {
+  color: #555;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.addProductItem > input,
+.addProductItem > select,
+.addProductItem > textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.2s;
+}
+
+.addProductItem > input:focus,
+.addProductItem > select:focus,
+.addProductItem > textarea:focus {
+  border-color: #5550bd;
+  outline: none;
+}
+
+.addProductItem > small {
+  color: #888;
+  margin-top: 5px;
+}
+
+.addProductButton {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5550bd;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.addProductButton:hover {
+  background-color: #453b9d;
+}
+
+.successMessageContainer {
+  position: fixed; /* Fixed positioning to cover the viewport */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Offset by half of its own width and height */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+.successMessage {
+  background-color: #d4edda; /* Light green background */
+  color: #155724; /* Dark green text */
+  padding: 20px; /* Increased padding */
+  border: 2px solid #c3e6cb; /* Border color */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 20px; /* Larger text */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+

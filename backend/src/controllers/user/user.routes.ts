@@ -58,9 +58,9 @@ router.post(
 );
 
 router.post(
-  "/:id/payment-method",
+  "/add-payment/:id",
   verifyUser,
-  validate(paymentMethodValidator, 'body'), 
+   validate(paymentMethodValidator, 'body'), 
   UserController.addPaymentMethod
 );
 
@@ -72,13 +72,13 @@ router.put(
 );
 
 router.delete(
-  "/:id/payment-method/:paymentMethodId",
+  "/delete-payment/:id/:paymentMethodId",
   verifyUser,
   UserController.deletePaymentMethod
 );
 
 router.get(
-  "/:id/payment-methods",
+  "/get-payment/:id",
   verifyUser,
   UserController.getPaymentMethods
 );

@@ -263,23 +263,16 @@ export default function Product() {
           <div className="productFormRight">
             <div className="productUpload">
               <img
-                src={inputs.img}
-                alt={inputs.title}
+                src={file ? URL.createObjectURL(file) : inputs.img}
+                alt=""
                 className="productUploadImg"
               />
               <label htmlFor="file">
                 <Publish />
               </label>
-              <input
-                type="file"
-                id="file"
-                style={{ display: "none" }}
-                onChange={handleFileChange}
-              />
+              <input type="file" id="file" style={{ display: "none" }} onChange={handleFileChange} />
             </div>
-            <button className="productButton" type="submit">
-              Update
-            </button>
+            <button type="submit" className="productButton">Update</button>
           </div>
         </form>
       </div>

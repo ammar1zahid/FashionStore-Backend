@@ -64,9 +64,22 @@ class ProductController {
         }
     }
 
+    // public static async getAllProducts(req: Request, res: Response, next: NextFunction): Promise<void> {
+    //     try {
+    //         const result = await ProductService.getAllProducts(req.query as { new?: string, category?: string, page?: string, limit?: string });
+    //         res.status(200).json(result);
+    //     } catch (err: unknown) {
+    //         if (err instanceof Error) {
+    //             next(createError(500, err.message));
+    //         } else {
+    //             next(createError(500, 'An unexpected error occurred'));
+    //         }
+    //     }
+    // }
+
     public static async getAllProducts(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const result = await ProductService.getAllProducts(req.query as { new?: string, category?: string });
+            const result = await ProductService.getAllProducts(req.query as { new?: string, category?: string, page?: string, limit?: string });
             res.status(200).json(result);
         } catch (err: unknown) {
             if (err instanceof Error) {
@@ -76,6 +89,22 @@ class ProductController {
             }
         }
     }
+
+
+    public static async getAllProductsAdmin(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const products = await ProductService.getAllProductsAdmin();
+            res.status(200).json(products);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                next(createError(500, err.message));
+            } else {
+                next(createError(500, 'An unexpected error occurred'));
+            }
+        }
+    }
+    
+
 
     public static async getRecommendedProducts(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
